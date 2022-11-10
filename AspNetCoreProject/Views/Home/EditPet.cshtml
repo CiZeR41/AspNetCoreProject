@@ -1,0 +1,166 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model AspNetCoreProject.Models.Animal
+@{
+    ViewData["Title"] = "EditPet";
+    Layout = "~/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        font-family: 'Roboto', sans-serif !important;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .mainscreen {
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        color: #963E7B;
+    }
+
+    .petbox {
+        width: 60rem;
+        margin: auto;
+        background: white;
+        position: center;
+        align-self: center;
+        top: 50rem;
+        border-radius: 1.5rem;
+        box-shadow: 4px 3px 20px #3535358c;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .leftside {
+        background: #030303;
+        width: 25rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-top-left-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem;
+    }
+
+    .pet {
+        object-fit: cover;
+        width: 20em;
+        height: 20em;
+        border-radius: 100%;
+    }
+
+    .rightside {
+        background-color: #ffffff;
+        width: 35rem;
+        border-bottom-right-radius: 1.5rem;
+        border-top-right-radius: 1.5rem;
+        padding: 1rem 2rem 3rem 3rem;
+    }
+
+    p {
+        display: block;
+        font-size: 1.1rem;
+        font-weight: 400;
+        margin: .8rem 0;
+    }
+
+    .inputbox {
+        color: #030303;
+        width: 100%;
+        padding: 0.5rem;
+        border: none;
+        border-bottom: 1.5px solid #ccc;
+        margin-bottom: 1rem;
+        border-radius: 0.3rem;
+        font-family: 'Roboto', sans-serif;
+        color: #615a5a;
+        font-size: 1.1rem;
+        font-weight: 500;
+        outline: none;
+    }
+
+    .picselect {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 0.6rem;
+    }
+
+    .button {
+        background: linear-gradient( 135deg, #753370 0%, #298096 100%);
+        padding: 15px;
+        border: none;
+        border-radius: 50px;
+        color: white;
+        font-weight: 400;
+        font-size: 1.2rem;
+        margin-top: 10px;
+        width: 100%;
+        letter-spacing: .11rem;
+        outline: none;
+    }
+
+        .button:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 3px 3px 6px #38373785;
+        }
+
+    .petbox {
+        flex-direction: column;
+        width: auto;
+    }
+
+    .leftside {
+        width: 100%;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 0;
+        border-radius: 0;
+    }
+
+    .rightside {
+        width: auto;
+        border-bottom-left-radius: 1.5rem;
+        padding: 0.5rem 3rem 3rem 2rem;
+        border-radius: 0;
+    }
+</style>
+
+
+<div class="mainscreen">
+    <div class="petbox">
+        <div class="leftside">
+            <img style="max-height: 350px; border-radius: 8px;" src="~/images/@ViewBag.Aniamal.PictureName" />
+        </div>
+        <div class="rightside">
+            <form method="post" asp-controller="Home" asp-action="EditPet1" asp-route-id="@ViewBag.Aniamal.AnimalID" enctype="multipart/form-data">
+                <h1>Add Net Pet</h1>
+                <h2>Pet Details</h2>
+                <input value="@ViewBag.Aniamal.AnimalID" asp-for="AnimalID" hidden="hidden" />
+                <p>Pet Name:</p>
+                <input placeholder="Pet Full Name" Value="@ViewBag.Aniamal.Name" type="text" class="inputbox" asp-for="Name" required />
+                <span asp-validation-for="Name"></span>
+                <p>Pet Age: </p>
+                <input placeholder="Pet Age" value="@ViewBag.Aniamal.Age" asp-for="Age" type="number" class="inputbox" required />
+                <span asp-validation-for="Age"></span>
+                <p>Pet Category</p>
+
+                <select asp-for="CategoryID" asp-items="@ViewBag.categories">
+                </select>
+
+                <input value="@ViewBag.Aniamal.PictureName" asp-for="PictureName" hidden="hidden" />
+                <span asp-validation-for="PictureName"></span>
+                <div class="picselect">
+                    <p>Select Image:</p>
+                    <input name="newpicture" type="file">
+                </div>
+                <p>Description Filed:</p>
+                <textarea type="text" value="@ViewBag.Aniamal.Description" asp-for="Description" class="inputbox" rows="4" cols="50" style="word-wrap: break-word; word-break: break-all; height: 80px;"></textarea>
+                <span asp-validation-for="Description"></span>
+                <button type="submit" class="button">Edit Pet</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+

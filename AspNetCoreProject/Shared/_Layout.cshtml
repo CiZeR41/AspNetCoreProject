@@ -1,0 +1,37 @@
+﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <style>
+        li a:hover {
+            background-color: #111;
+        }
+    </style>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.validate.min-1.17.0.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min-3.2.10.js"></script>
+</head>
+
+
+<body>
+
+    <ul style=" list-style-type: none; margin: 0; padding: 0; overflow: hidden; background-color: #333;">
+        <li style="float: left;"><a class="active" style=" display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;" asp-controller="Home" asp-action="Index">Home</a></li>  @*need to figure out how to make class 'active' to be on the same li I choose at the menu bar*@
+        <li style="float: left;"><a style=" display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none; " asp-controller="Home" asp-action="Catalog">Catalog</a></li>
+        <li style="float: left;"><a style=" display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none; " asp-controller="Home" asp-action="Admin">Admin</a></li>
+        <li style="float:right"><a style=" display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;  " href="#about">About</a></li>
+    </ul>
+
+    <br />
+    <br />
+    <br />
+    <div>
+        @RenderBody()
+    </div>
+
+</body>
+</html>

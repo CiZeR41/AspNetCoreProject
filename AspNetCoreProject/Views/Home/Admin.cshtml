@@ -1,0 +1,142 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<AspNetCoreProject.Models.Category>
+@{
+    ViewData["Title"] = "Admin";
+    Layout = "~/Shared/_Layout.cshtml";
+}
+<link href="~/Styles/StyleSheet1.css" rel="stylesheet" />
+<script src="~/Scripts/JavaScript.js"></script>
+<style>
+    .select {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+    }
+    .box {
+        position: absolute;
+        top: 46.8%;
+        left: 56%;
+        transform: translate(-50%, -50%);
+    }
+
+        .box select {
+            background-color: black;
+            color: white;
+            padding: 14.5px;
+            width: 250px;
+            border: none;
+            font-size: 20px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            -webkit-appearance: button;
+            outline: none;
+        }
+
+            .box select option {
+                padding: 30px;
+            }
+
+    span {
+        position: relative;
+        top: 40%;
+        left: 38%;
+        display: inline-flex;
+        width: 180px;
+        height: 55px;
+        margin: 0 15px;
+        perspective: 1000px;
+    }
+
+        span a {
+            font-size: 19px;
+            letter-spacing: 1px;
+            transform-style: preserve-3d;
+            transform: translateZ(-25px);
+            transition: transform .25s;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+            span a:before,
+            span a:after {
+                position: absolute;
+                content: "Add Pet";
+                height: 55px;
+                width: 180px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 5px solid black;
+                box-sizing: border-box;
+                border-radius: 5px;
+            }
+
+            span a:before {
+                color: #fff;
+                background: #000;
+                transform: rotateY(0deg) translateZ(25px);
+            }
+
+            span a:after {
+                color: #000;
+                transform: rotateX(90deg) translateZ(25px);
+            }
+
+            span a:hover {
+                transform: translateZ(-25px) rotateX(-90deg);
+            }
+
+    h4 {
+        text-align: center;
+        font-size: 42px;
+        -webkit-text-stroke: 1px white;
+        color: white;
+        text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+</style>
+
+<h4>Admin Panel</h4>
+<h4>Here you can Add/Remove/Edit Pet</h4>
+<span><a asp-controller="Home" asp-action="AddPetView"></a></span>
+<form class="box" asp-controller="Home" asp-action="Admin">
+    <select id="Categoryselected" onchange="categoryselectAdmin()">
+        <option value="0">Show All</option>
+        @foreach (var Category in Model)
+        {
+            if (Category.CategoryID == ViewBag.ID)
+            {
+                <option value="@Category.CategoryID" selected>@Category.Name</option>
+            }
+            else
+            {
+                <option value="@Category.CategoryID">@Category.Name</option>
+            }
+        }
+    </select>
+    <br />
+</form>
+<script>
+    function categoryselectAdmin() {
+        let id = document.getElementById("Categoryselected").value;
+        window.location.href = "/Home/Admin/" + id
+    }</script>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="animal-box-container">
+    @foreach (var Animal in ViewBag.Animal)
+    {
+        <div class="animal-box details-box text-center" style="background-image: url('/images/@Animal.PictureName');">
+
+            <h5>@Animal.Name</h5>
+            <ul class="features-list" style="margin-top: 100px">
+                <li></li>
+                <li>Pet Age: <strong>@Animal.Age</strong> </li>
+                <li></li>
+            </ul>
+            <a class="btn-primary" asp-controller="Home" asp-action="EditPet" asp-route-id="@Animal.AnimalID">Edit</a>
+            <a class="btn-primary" asp-controller="Home" asp-action="Delete" asp-route-id="@Animal.AnimalID">Delete</a>
+        </div>
+    }
+</div>

@@ -1,0 +1,80 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<AspNetCoreProject.Models.Category>
+
+@{
+    ViewData["Title"] = "Catalog";
+    Layout = "~/Shared/_Layout.cshtml";
+}
+<link href="~/Styles/StyleSheet1.css" rel="stylesheet" />
+<script src="~/Scripts/JavaScript.js"></script>
+<style>
+ @* Check why it's not working at the CSS With H4{} by it self. NOTE: H4 Not a use at my css.'*@
+    h4 {
+        text-align: center;
+        font-size: 42px;
+        -webkit-text-stroke: 1px white;
+        color: white;
+        text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+
+    .box {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+        .box select {
+            background-color: black;
+            color: white;
+            padding: 12px;
+            width: 250px;
+            border: none;
+            font-size: 20px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            -webkit-appearance: button;
+            outline: none;
+        }
+
+        .box select option {
+            padding: 30px;
+        }
+</style>
+<body>
+    <h4>Pet Catalog</h4>
+    <h4 style="font: 38px">Down below you can choose Pet Category</h4>
+    <form class="box" asp-controller="Home" asp-action="Catalog">
+        <select id="categoryselected" onchange="categoryselect()">
+            <option value="0">Show All</option>
+            @foreach (var Category in Model)
+            {
+                if (Category.CategoryID == ViewBag.ID)
+                {
+                    <option value="@Category.CategoryID" selected>@Category.Name</option>
+                }
+                else
+                {
+                    <option value="@Category.CategoryID">@Category.Name</option>
+                }
+            }
+        </select>
+        <br />
+    </form>
+    <br /><br /><br /><br /><br /><br />
+    <div class="animal-box-container">
+        @foreach (var Animal in ViewBag.Animal)
+        {
+            <div class="animal-box details-box text-center " style="background-image: url('/images/@Animal.PictureName');">
+
+                <h5>@Animal.Name</h5>
+                <ul class="features-list" style="margin-top: 100px">
+                    <li></li>
+                    <li>Pet Age: <strong>@Animal.Age</strong> </li>
+                    <li></li>
+                </ul>
+                @*               a tag works button tag dosent and its nmake a underline that i cant get ridd off*@
+                <a class="btn-primary" asp-controller="Home" asp-action="Details" asp-route-id="@Animal.AnimalID">Details</a>
+            </div>
+        }
+    </div>
+</body>

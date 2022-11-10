@@ -1,0 +1,114 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+* {
+    box-sizing: border-box;
+}
+
+.row {
+    margin: 0 40px;
+}
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+body {
+    background-color: #f6f5f7;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 50px;
+}
+
+div {
+}
+
+.text-center {
+    text-align: center;
+}
+
+.animal-box-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.animal-box {
+    background-color: #ffffff;
+    box-shadow: 0px -8px 15px 0px rgba(0,0,0,0.5);
+    border-radius: 4px;
+    flex: 1;
+    padding: 0 30px 30px;
+    margin: 1%;
+    min-width: 350px;
+    max-width: 350px;
+}
+
+h5 {
+    font-size: 26px;
+    -webkit-text-stroke: 1px white;
+    color: white;
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.animal-box h5 {
+    /*    text-transform: uppercase;*/
+}
+
+li {
+    color: white;
+    font-size: 20px;
+    text-shadow: -1px 1px 6px #000, 1px 1px 2px #000, 1px -1px 0 #000, -1px -1px 0 #000;
+}
+
+
+.features-list {
+    padding: 0;
+    list-style-type: none;
+}
+
+    .features-list li {
+        font-weight: 100;
+        padding: 12px 0;
+        font-weight: 100;
+    }
+
+        .features-list li:not(:last-of-type) {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+.btn-primary {
+    border-radius: 25px;
+    border: none;
+    background-color: #EC1362;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 10px 15px;
+    margin-top: 20px;
+    transition: all 0.1s ease-in-out;
+}
+
+    .btn-primary:hover {
+        box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.5);
+        transform: translateY(-3px);
+    }
+
+a {
+    text-decoration: none !important;
+}
+
+.details-box {
+    background-size: cover;
+    background-position: center center;
+    color: #ffffff;
+}
+
+    .details-box .features-list li {
+        border-bottom-color: rgba(255, 255, 255, 1);
+    }
+
+    .details-box .btn-primary {
+        background-color: #ffffff;
+        color: #000;
+    }

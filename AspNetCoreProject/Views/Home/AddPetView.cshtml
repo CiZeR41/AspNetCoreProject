@@ -1,0 +1,135 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model AspNetCoreProject.Models.Animal
+@{
+    ViewData["Title"] = "AddPetView";
+    Layout = "~/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        font-family: 'Roboto', sans-serif !important;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .mainscreen {
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        color: #963E7B;
+    }
+
+    .petbox {
+        width: 60rem;
+        margin: auto;
+        background: white;
+        position: center;
+        align-self: center;
+        top: 50rem;
+        border-radius: 1.5rem;
+        box-shadow: 4px 3px 20px #3535358c;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .rightside {
+        background-color: #ffffff;
+        width: 35rem;
+        border-bottom-right-radius: 1.5rem;
+        border-top-right-radius: 1.5rem;
+        padding: 1rem 2rem 3rem 3rem;
+    }
+
+    p {
+        display: block;
+        font-size: 1.1rem;
+        font-weight: 400;
+        margin: .8rem 0;
+    }
+
+    .inputbox {
+        color: #030303;
+        width: 100%;
+        padding: 0.5rem;
+        border: none;
+        border-bottom: 1.5px solid #ccc;
+        margin-bottom: 1rem;
+        border-radius: 0.3rem;
+        font-family: 'Roboto', sans-serif;
+        color: #615a5a;
+        font-size: 1.1rem;
+        font-weight: 500;
+        outline: none;
+    }
+
+    .picselect {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 0.6rem;
+    }
+
+    .button {
+        background: linear-gradient( 135deg, #753370 0%, #298096 100%);
+        padding: 15px;
+        border: none;
+        border-radius: 50px;
+        color: white;
+        font-weight: 400;
+        font-size: 1.2rem;
+        margin-top: 10px;
+        width: 100%;
+        letter-spacing: .11rem;
+        outline: none;
+    }
+
+        .button:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 3px 3px 6px #38373785;
+        }
+
+    .petbox {
+        flex-direction: column;
+        width: auto;
+    }
+
+    .rightside {
+        width: auto;
+        border-bottom-left-radius: 1.5rem;
+        padding: 0.5rem 3rem 3rem 2rem;
+        border-radius: 0;
+    }
+</style>
+
+<div class="mainscreen">
+    <div class="petbox">
+        <div>
+            <img src="https://images.ctfassets.net/hrltx12pl8hq/5vMt4yXH3WJfVGUro74UJ7/159813a78d63638d4a223a78e997f989/compressed_shutterstock_1283470036.jpg?fit=fill&w=800&h=300" />
+        </div>
+        <div class="rightside">
+            <form asp-controller="Home" asp-action="AddPet" enctype="multipart/form-data">
+                <h1>Add Net Pet</h1>
+                <h2>Pet Details</h2>
+                <p>Pet Name:</p>
+                <input placeholder="Pet Full Name" type="text" class="inputbox" asp-for="Name" />
+                <span asp-validation-for="Name"></span>
+                <p>Pet Age: </p>
+                <input placeholder="Pet Age" asp-for="Age" type="number" class="inputbox"/>
+                <span asp-validation-for="Age"></span>
+                <p>Pet Category</p>
+                <select asp-for="CategoryID" asp-items="@ViewBag.CategoriesName">
+                </select>
+                <div class="picselect">
+                    <p>Select Image:</p>
+                    <input name="newpicture" asp-for="PictureName" type="file">
+                    <span asp-validation-for="PictureName"></span>
+                </div>
+                <p></p>
+                <p>Description Filed:</p>
+                <textarea asp-for="Description" class="inputbox" rows="4" cols="50" placeholder="Write here pet descrition"></textarea>
+                <span asp-validation-for="Description"></span>
+                <button type="submit" class="button">Add New Pet</button>
+            </form>
+        </div>
+    </div>
+</div>
